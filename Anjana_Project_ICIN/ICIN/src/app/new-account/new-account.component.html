@@ -1,0 +1,85 @@
+<div class="container p-2 ">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div *ngIf="getMessage()" [ngClass]="getMessageClass()" class="message">
+                {{ getMessage() }}
+            </div>
+            <div class="card">
+                <div class="card-body bg-light">
+                    <h4 class="text-center text-success">Create New Account</h4>
+
+                    <form (ngSubmit)="userCreate()" #signupForm="ngForm" method="post">
+                        <div class="mt-5">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="userFirstName"
+                                            [(ngModel)]="user.userFirstName" placeholder="First Name" required>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="userLastName"
+                                            [(ngModel)]="user.userLastName" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="userEmail" [(ngModel)]="user.userEmail"
+                                    placeholder="Email" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="userPhoneNo"
+                                    [(ngModel)]="user.userPhoneNo" placeholder="Phone No" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="userAddress"
+                                    [(ngModel)]="user.userAddress" placeholder="Address" required>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="userLocation"
+                                    [(ngModel)]="user.userLocation" placeholder="Location" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="userPassword"
+                                    [(ngModel)]="userLogin.userPassword" placeholder="Password" required>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="userTrnPassword"
+                                    [(ngModel)]="userLogin.trnPassword" placeholder="Transaction Password*" required>
+                                <p class="text-secondary" style="float: right; font-size: small; font-weight: 600;">
+                                    *Should
+                                    be different
+                                    from Account
+                                    Password</p>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success btn-block mt-3">Create</button>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div *ngIf="timerActive" style="font-size: larger;">
+                <b>Timer: {{ timerValue }} seconds</b>
+            </div>
+
+            <div *ngIf="!signupForm.valid && signupForm.submitted" class="alert alert-danger">
+                All fields are required!
+            </div>
+
+        </div>
+    </div>
+</div>

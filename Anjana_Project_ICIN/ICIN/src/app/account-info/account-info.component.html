@@ -1,0 +1,59 @@
+<div class="container p-5">
+    <h2>
+        My Account Info
+    </h2>
+
+    <table class="table bg-light mt-3" *ngFor="let info of data">
+        <tr>
+            <th>Name:</th>
+            <td>{{info[2]}} {{info[3]}}</td>
+
+            <div class="alert-dark">
+                <th>Account No:</th>
+                <td>{{info[0]}}</td>
+            </div>
+
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td>{{info[4]}}, {{info[5]}}</td>
+
+            <div class="alert-dark">
+                <th>Account Type:</th>
+                <td>{{info[1]}}</td>
+            </div>
+
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{info[6]}}</td>
+
+            <div class="alert-dark">
+                <th>Status:</th>
+                <ng-container *ngIf="info[8] == 1">
+                    <td>Active</td>
+                </ng-container>
+            </div>
+
+        </tr>
+        <tr>
+            <th>Phone No.</th>
+            <td>{{info[7]}}</td>
+
+            <div class="alert-dark">
+                <th>Current Balance:</th>
+                <ng-container *ngIf="info[9] < 1000; else balPresent">
+                    <td class="text-danger">{{info[9]}}</td>
+                </ng-container>
+                <ng-template #balPresent>
+                    <td class="text-dark">{{info[9]}}</td>
+                </ng-template>
+            </div>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><a href="" class="btn btn-outline-secondary">Change Password</a></td>
+        </tr>
+    </table>
+
+</div>

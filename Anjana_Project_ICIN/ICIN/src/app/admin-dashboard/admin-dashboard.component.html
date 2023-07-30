@@ -1,0 +1,48 @@
+<div class="container p-5 text-center">
+    <div *ngIf="adminId && adminRole ==='Admin'" class="">
+        <h1>Hello {{adminName}}</h1>
+
+        <div class="text-primary">
+            <h2>UserID: ACC{{adminId}}</h2>
+            <h2>Role: {{adminRole}}</h2>
+        </div>
+    </div>
+
+    <div *ngIf="getMessage()" [ngClass]="getMessageClass()" class="message">
+        {{ getMessage() }}
+    </div>
+
+    <table class="table table-light bg-light" style="border: 2px solid rgba(183, 161, 138, 0.333);">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th colspan="2">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}} {{item[2]}}</td>
+                <td>
+                    <select #statusSelect (change)="onStatusChange(item[0], statusSelect.value)" class="form-select"
+                        style="float:right;">
+                        <option value="" selected>Select status</option>
+                        <option value="0" class="text-danger">Deactivated</option>
+                        <option value="1" class="text-success">Activated</option>
+                    </select>
+                </td>
+                <td class="text-left">
+                    <span *ngIf="item[3] === 0" class="text-danger">
+                        Deactivated
+                    </span>
+                    <span *ngIf="item[3] === 1" class="text-success">
+                        Activated
+                    </span>
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>

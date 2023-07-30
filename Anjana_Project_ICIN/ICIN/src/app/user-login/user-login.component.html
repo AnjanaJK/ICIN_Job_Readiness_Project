@@ -1,0 +1,33 @@
+<div class="container p-5 mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body bg-light">
+                    <h4 class="text-center text-primary">User Login</h4>
+
+                    <form (ngSubmit)="userLogin(user.accountNo, userPass.userPassword)" method="post">
+                        <div class="mt-5">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="accountNo" placeholder="Account No"
+                                    [(ngModel)]="user.accountNo" required>
+                            </div>
+
+                            <div class="form-group">
+
+                                <input type="password" class="form-control" name="userPassword" placeholder="Password"
+                                    [(ngModel)]="userPass.userPassword" required>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block mt-3">Login</button>
+
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="getMessage()" [ngClass]="getMessageClass()" class="message">
+                {{ getMessage() }}
+            </div>
+        </div>
+    </div>
+</div>

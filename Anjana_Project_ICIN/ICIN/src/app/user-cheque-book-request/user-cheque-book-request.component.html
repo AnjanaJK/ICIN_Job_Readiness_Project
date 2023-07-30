@@ -1,0 +1,68 @@
+<div class="container p-5">
+
+    <h2>Request for New Cheque Book</h2>
+    <div class="row">
+
+        <div class="col-6">
+            <div class="card">
+                <div class=" card-body">
+                    <form (ngSubmit)="sendRequest()">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="accountNo" placeholder="Account No"
+                                [(ngModel)]="myAccountNo" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="accountType" placeholder="Account Type"
+                                [(ngModel)]="accountType">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="description" class="form-control" cols="50" rows="5"
+                                [(ngModel)]="desc"></textarea>
+                        </div>
+
+
+                        <button class="btn btn-outline-primary btn-block mt-3">Request</button>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="getMessage()" [ngClass]="getMessageClass()" class="message">
+                {{ getMessage() }}
+            </div>
+        </div>
+
+        <div class="col-6">
+            <table class="table table-light bg-light">
+                <thead>
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Acc No</th>
+                        <th>Acc Type</th>
+                        <th>Desc</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody *ngFor="let item of response">
+                    <tr>
+                        <td>{{item[0]}}</td>
+                        <td>{{item[1]}}</td>
+                        <td>{{item[2]}}</td>
+                        <td>{{item[3]}}</td>
+                        <td>
+                            <span class="text-danger" *ngIf="item[4] === 0">
+                                Pending
+                            </span>
+                            <span *ngIf="item[4] === 1" class="text-success">
+                                Approved
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

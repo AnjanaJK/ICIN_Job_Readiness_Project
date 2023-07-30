@@ -1,0 +1,49 @@
+<div class="container p-5 text-center">
+    <div class="text-center">
+        <h2>All Cheque Book Requests</h2>
+    </div>
+
+    <!-- <div *ngIf="getMessage()" [ngClass]="getMessageClass()" class="message">
+        {{ getMessage() }}
+    </div> -->
+
+    <table class="table table-light bg-light" style="border: 2px solid rgba(183, 161, 138, 0.333);">
+        <thead>
+            <tr>
+                <th>Sno.</th>
+                <th>Acc No</th>
+                <th>Name</th>
+                <th>Acc Type</th>
+                <th>Desc</th>
+                <th colspan="2">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}} {{item[3]}}</td>
+                <td>{{item[4]}}</td>
+                <td>{{item[5]}}</td>
+                <td>
+                    <select class="form-select" #statusSelect (change)="onStatusChange(item[0], statusSelect.value)"
+                        style="float:right;">
+                        <option value="" selected>Select status</option>
+                        <option value="0" class="text-danger">Pending</option>
+                        <option value="1" class="text-success">Approved</option>
+                    </select>
+                </td>
+                <td class="text-left">
+                    <span *ngIf="item[6] === 0" class="text-danger">
+                        Pending
+                    </span>
+                    <span *ngIf="item[6] === 1" class="text-success">
+                        Approved
+                    </span>
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>

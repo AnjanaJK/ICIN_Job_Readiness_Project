@@ -1,0 +1,83 @@
+<div class="header">
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:rgba(193, 181, 166, 0.352);">
+
+        <a class="navbar-brand" href="#" style="font-weight: 600;">ICIN</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: 500;">
+
+            <ul class="navbar-nav mr-auto">
+
+                <ng-container *ngIf="adminRole === 'Admin'">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/allCustomers">All Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/all-cheque-book-requests">Cheque Book Requests</a>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="userRole === 'Customer'">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboardCustomer">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account-info">Account Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transactions">Transactions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/my-cheque-book">Request for Cheque Book</a>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="!userRole && !adminRole">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin-login">Admin Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user-login">User Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/new-account">New Account</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                </ng-container>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+
+
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <div style="margin-right: 20px; margin-top: 5px;">
+                    <li class="nav-item" *ngIf="adminRole">
+                        [ Admin Mode ]
+                    </li>
+
+                    <li class="nav-item" *ngIf="userRole">
+                        Name: {{firstName}} {{lastName}}
+                    </li>
+                </div>
+
+                <!-- Show Logout button for authenticated users -->
+                <li class="nav-item" *ngIf="userRole || adminRole">
+                    <button class="btn btn-danger" (click)="logout()">Logout</button>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
